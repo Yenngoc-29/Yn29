@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Web Đơn Giản</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: white;
+        }
+        input[type="text"], button {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid white;
+            border-radius: 4px;
+        }
+        button {
+            background-color: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: green;
+        }
+        #colorBox {
+            width: 100px;
+            height: 100px;
+            background-color: lightgray;
+            margin: 20px 0;
+        }
+        #movingCircle {
+            width: 50px;
+            height: 50px;
+            background-color: blue;
+            border-radius: 50%;
+            position: relative;
+            margin: 20px 0;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 10px;
+            background-color: white;
+            margin: 5px 0;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        li:hover {
+            color: red;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Chào mừng đến với trang web của tôi!</h1>
+
+    <input type="text" id="nameInput" placeholder="Nhập tên của bạn">
+    <button id="greetButton">Gửi</button>
+    <p id="greeting"></p>
+
+    <input type="text" id="itemInput" placeholder="Nhập mục để thêm vào danh sách">
+    <button id="addButton">Thêm vào danh sách</button>
+    <ul id="itemList"></ul>
+
+    <div id="colorBox"></div>
+    <button id="colorButton">Đổi màu</button>
+
+    <div id="movingCircle"></div>
+    <button id="moveButton">Di chuyển</button>
+
+    <script>
+
+        document.getElementById('greetButton').onclick = function() {
+            const name = document.getElementById('nameInput').value;
+            document.getElementById('greeting').innerText = `Chào bạn, ${name}!`;
+        };
+
+        
+        document.getElementById('addButton').onclick = function() {
+            const itemText = document.getElementById('itemInput').value;
+            if (itemText) {
+                const li = document.createElement('li');
+                li.innerText = itemText;
+                li.onclick = function() { li.remove(); };
+                document.getElementById('itemList').appendChild(li);
+                document.getElementById('itemInput').value = '';
+            }
+        };
+
+        
+        document.getElementById('colorButton').onclick = function() {
+            const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+            document.getElementById('colorBox').style.backgroundColor = randomColor;
+        };
+
+        
+        let position = 0;
+        document.getElementById('moveButton').onclick = function() {
+            position += 10; 
+            document.getElementById('movingCircle').style.left = position + 'px';
+        };
+    </script>
+
+</body>
+</html>
