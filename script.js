@@ -13,25 +13,25 @@ document.addEventListener('DOMContentLoaded', () => {
         const li = document.createElement('li');
         li.textContent = taskText;
 
-        // Tùy chọn sửa công việc
+        //sửa công việc
         li.onclick = () => {
             const newTaskText = prompt('Sửa công việc:', li.textContent);
             if (newTaskText) li.textContent = newTaskText;
         };
 
-        // Tùy chọn xóa công việc
+        //xóa công việc
         const deleteButton = document.createElement('button');
         deleteButton.textContent = 'Xóa';
         deleteButton.onclick = (event) => {
-            event.stopPropagation(); // Ngăn chặn sự kiện click trên li
+            event.stopPropagation(); 
             taskList.removeChild(li);
         };
 
         li.appendChild(deleteButton);
         taskList.appendChild(li);
-        taskInput.value = ''; // Xóa ô nhập sau khi thêm công việc
+        taskInput.value = '';
 
-        // Đánh dấu công việc hoàn thành
+        // đánh dấu công việc hoàn thành
         li.onclick = () => {
             li.classList.toggle('completed');
         };
